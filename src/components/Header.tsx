@@ -1,9 +1,14 @@
 import React from "react";
-import { Typography, Space, Badge } from "antd";
-import { StarOutlined, ThunderboltOutlined } from "@ant-design/icons";
+import { Typography, Space, Badge, Button } from "antd";
+import { StarOutlined, ThunderboltOutlined, SettingOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  isSecretMode?: boolean;
+  onSecretToggle?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ isSecretMode = false, onSecretToggle }) => {
   return (
     <div
       style={{
@@ -17,6 +22,33 @@ const Header: React.FC = () => {
         overflow: "hidden",
       }}
     >
+      {/* Secret Button - Tersembunyi di pojok kanan atas */}
+      {onSecretToggle && (
+        <Button
+          type="text"
+          size="small"
+          onClick={onSecretToggle}
+          icon={<SettingOutlined />}
+          style={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            width: 20,
+            height: 20,
+            padding: 0,
+            border: "none",
+            background: isSecretMode ? "rgba(135, 206, 250, 0.2)" : "transparent",
+            color: isSecretMode ? "#87ceeb" : "rgba(255, 255, 255, 0.2)",
+            borderRadius: "50%",
+            fontSize: 8,
+            opacity: 0.3,
+            transition: "all 0.3s ease",
+            zIndex: 10,
+          }}
+          className="header-secret-button"
+        />
+      )}
+
       {/* Background decoration */}
       <div
         style={{
@@ -121,6 +153,11 @@ const Header: React.FC = () => {
             transform: scale(1.1);
             opacity: 0.8;
           }
+        }
+
+        .header-secret-button:hover {
+          opacity: 0.6 !important;
+          transform: rotate(45deg) !important;
         }
       `}</style>
     </div>

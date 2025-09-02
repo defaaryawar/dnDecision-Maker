@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6} from "lucide-react";
+import { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 } from "lucide-react";
 import Header from "./components/Header";
 import CategoryButton from "./components/CategoryButton";
 import DiceRoller from "./components/DiceRoller";
@@ -9,11 +9,18 @@ import InfoSection from "./components/InfoSection";
 import { foodOptions } from "./data/food.data";
 import { placeOptions } from "./data/place.data";
 
+// Data khusus Lagoon Avenue Bekasi
+const lagoonAvenueFood = [
+  "Solaria (Lagoon Avenue Bekasi)",
+  "Burger King (Lagoon Avenue Bekasi)",
+];
+
 const App: React.FC = () => {
   const [currentCategory, setCurrentCategory] = useState<"food" | "place">("food");
   const [result, setResult] = useState<string>("");
   const [isRolling, setIsRolling] = useState(false);
   const [diceIconIndex, setDiceIconIndex] = useState<number>(0);
+  const [isSecretMode, setIsSecretMode] = useState(false);
 
   const diceIcons = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6];
 
@@ -33,10 +40,24 @@ const App: React.FC = () => {
       if (rollCount > 10) {
         clearInterval(rollInterval);
 
-        // Pilih hasil random
-        const options = currentCategory === "food" ? foodOptions : placeOptions;
-        const randomIndex = Math.floor(Math.random() * options.length);
-        const selectedOption = options[randomIndex];
+        let selectedOption: string;
+
+        // Logika secret mode
+        if (isSecretMode) {
+          if (currentCategory === "food") {
+            // Pilih random dari makanan Lagoon Avenue
+            const randomIndex = Math.floor(Math.random() * lagoonAvenueFood.length);
+            selectedOption = lagoonAvenueFood[randomIndex];
+          } else {
+            // Untuk category place, langsung Lagoon Avenue
+            selectedOption = "Lagoon Avenue Bekasi";
+          }
+        } else {
+          // Mode normal - pilih random dari data biasa
+          const options = currentCategory === "food" ? foodOptions : placeOptions;
+          const randomIndex = Math.floor(Math.random() * options.length);
+          selectedOption = options[randomIndex];
+        }
 
         setTimeout(() => {
           setResult(selectedOption);
@@ -56,10 +77,15 @@ const App: React.FC = () => {
     resetResult();
   };
 
+  const toggleSecretMode = () => {
+    setIsSecretMode(!isSecretMode);
+    resetResult(); // Reset result ketika toggle secret mode
+  };
+
   return (
     <div className="min-h-screen md:px-3 md:py-6">
       <div className="md:max-w-sm md:mx-auto bg-white/95 backdrop-blur-sm md:rounded-2xl shadow-2xl overflow-hidden">
-        <Header />
+        <Header isSecretMode={isSecretMode} onSecretToggle={toggleSecretMode} />
 
         <div className="px-4 py-4">
           {/* Category Buttons */}
@@ -67,15 +93,19 @@ const App: React.FC = () => {
             <CategoryButton
               label="Makan Apa?"
               isActive={currentCategory === "food"}
-              onClick={() => handleCategoryChange("food")} icon={"food"}            />
+              onClick={() => handleCategoryChange("food")}
+              icon={"food"}
+            />
 
             <CategoryButton
               label="Kemana Ya?"
               isActive={currentCategory === "place"}
-              onClick={() => handleCategoryChange("place")} icon={"place"}            />
+              onClick={() => handleCategoryChange("place")}
+              icon={"place"}
+            />
           </div>
 
-          {/* Dice Roller */}
+          {/* Dice Roller - Normal tanpa indikasi secret mode */}
           <DiceRoller diceIconIndex={diceIconIndex} isRolling={isRolling} onRoll={rollDice} />
 
           {/* Result Display */}
@@ -87,7 +117,13 @@ const App: React.FC = () => {
           {/* Info Section */}
           <InfoSection
             category={currentCategory}
-            foodCount={foodOptions.length}
+            foodCount={
+              isSecretMode && currentCategory === "food"
+                ? lagoonAvenueFood.length
+                : currentCategory === "food"
+                ? foodOptions.length
+                : placeOptions.length
+            }
             placeCount={placeOptions.length}
           />
         </div>

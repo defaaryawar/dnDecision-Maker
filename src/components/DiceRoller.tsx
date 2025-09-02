@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Card, Space} from "antd";
-import { ReloadOutlined, ThunderboltOutlined } from "@ant-design/icons";
+import { Button, Card, Space } from "antd";
+import { ReloadOutlined, ThunderboltOutlined} from "@ant-design/icons";
 
 // Custom Dice Icons as SVG components
 const DiceIcons = {
@@ -191,6 +191,11 @@ const DiceRoller: React.FC<DiceRollerProps> = ({ diceIconIndex, isRolling, onRol
 
         .dice-roll-button:active {
           transform: translateY(0px) !important;
+        }
+
+        .secret-button:hover {
+          opacity: 0.8 !important;
+          transform: scale(1.1) !important;
         }
       `}</style>
     </div>
