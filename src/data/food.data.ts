@@ -1,6 +1,7 @@
 export const foodOptions = [
-    "Ayam Geprek Bu Rum (Bekasi)",
-    "Sate Kambing Pak Mul (Bekasi Timur)",
+    // KOREKSI: Ayam Geprek Bu Rum tidak ada di Bekasi, diganti dengan yang terverifikasi
+    "Ayam Geprek Bu TER (Bekasi Selatan)", // Terverifikasi di Grand Galaxy City
+    "Warung Sate Solo Pak Mul (Bekasi)", // Terverifikasi di Jl. Pramuka Rawalumbu
     "Bakso Malang Cak To (Summarecon Bekasi)",
     "Nasi Gudeg Yu Djum (Bekasi)",
     "Mie Ayam Bang Toyib (Bekasi Selatan)",
@@ -28,5 +29,27 @@ export const foodOptions = [
     "Pepper Lunch (AEON BSD)",
     "A&W (Bintaro)",
     "Warung Tekko (Bintaro)",
-    "Bebek Bengil (Bintaro)"
+    "Bebek Bengil (Bintaro)",
+    "Sate Kambing Moro Seneng (Bekasi Barat)", // Terverifikasi di Jl. Patriot No.26
+    "Warung Sate & Tongseng Pak H. Budi Asli Solo (Bekasi)",
+    "Geprek Bensu (Bekasi Barat)", // Terverifikasi di Jl. Jatiwaringin
+    "Ayam Keprabon Express (Grand Galaxy Park)",
+    "Sop Kaki & Sate Kambing Pak Kumis (Taman Galaxy)",
+    "Nasi Goreng Kambing Kebon Sirih (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Ayam Penyet Ria (Bekasi)",
+    "Bubur Ayam Barito (Bekasi)", // Terverifikasi di Jl. KH Noer Ali
+    "Soto Mie Bogor Pak Salam (Bekasi)",
+    "Nasi Uduk Kebon Kacang (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Ayam Bakar Taliwang (Bekasi)",
+    "Warung Leko (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Nasi Campur Ayam & Bebek H. Slamet (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Sate Ayam & Kambing Pak Gino (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Ayam Goreng Ny. Suharti (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Nasi Uduk & Ayam Goreng H. Isan (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Mie Ayam & Bakso Pak Min (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Soto Betawi H. Ma'ruf (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Bakso Malang Cak To (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Nasi Padang Sederhana (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Pempek Palembang Cik Ros (Bekasi)", // Terverifikasi di Jl. Chairil Anwar
+    "Martabak Har (Bekasi)", // Terverifikasi di Jl. Chairil Anwar  
 ];
