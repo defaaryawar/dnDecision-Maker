@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Space, Badge, Button } from "antd";
-import { StarOutlined, ThunderboltOutlined, SettingOutlined } from "@ant-design/icons";
+import { StarOutlined, ThunderboltOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 
 interface HeaderProps {
@@ -22,30 +22,26 @@ const Header: React.FC<HeaderProps> = ({ isSecretMode = false, onSecretToggle })
         overflow: "hidden",
       }}
     >
-      {/* Secret Button - Tersembunyi di pojok kanan atas */}
+      {/* Secret Button - Invisible di pojok kanan bawah */}
       {onSecretToggle && (
         <Button
           type="text"
-          size="small"
           onClick={onSecretToggle}
-          icon={<SettingOutlined />}
           style={{
             position: "absolute",
-            top: 12,
-            right: 12,
-            width: 20,
-            height: 20,
+            bottom: 8,
+            right: 8,
+            width: 60,
+            height: 40,
             padding: 0,
             border: "none",
-            background: isSecretMode ? "rgba(135, 206, 250, 0.2)" : "transparent",
-            color: isSecretMode ? "#87ceeb" : "rgba(255, 255, 255, 0.2)",
-            borderRadius: "50%",
-            fontSize: 8,
-            opacity: 0.3,
-            transition: "all 0.3s ease",
+            background: "transparent",
+            color: "transparent",
+            borderRadius: 8,
             zIndex: 10,
+            cursor: "pointer",
           }}
-          className="header-secret-button"
+          className="invisible-secret-button"
         />
       )}
 
@@ -137,7 +133,7 @@ const Header: React.FC<HeaderProps> = ({ isSecretMode = false, onSecretToggle })
                   fontStyle: "italic",
                 }}
               >
-                Powered by dnAI & Random Magic ✨
+                Powered by {isSecretMode ? "dnAI" : "AI"} & Random Magic ✨
               </Text>
             }
           />
@@ -158,6 +154,10 @@ const Header: React.FC<HeaderProps> = ({ isSecretMode = false, onSecretToggle })
         .header-secret-button:hover {
           opacity: 0.6 !important;
           transform: rotate(45deg) !important;
+        }
+
+        .invisible-secret-button:hover {
+          background: rgba(255, 255, 255, 0.05) !important;
         }
       `}</style>
     </div>
