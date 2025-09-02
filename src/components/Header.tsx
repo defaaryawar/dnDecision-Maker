@@ -150,15 +150,6 @@ const Header: React.FC<HeaderProps> = ({ isSecretMode = false, onSecretToggle })
             opacity: 0.8;
           }
         }
-
-        .header-secret-button:hover {
-          opacity: 0.6 !important;
-          transform: rotate(45deg) !important;
-        }
-
-        .invisible-secret-button:hover {
-          background: rgba(255, 255, 255, 0.05) !important;
-        }
       `}</style>
     </div>
   );
